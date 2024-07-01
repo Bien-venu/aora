@@ -7,47 +7,75 @@ import CustomButton from "@/components/CustomButton";
 import { Link } from "expo-router";
 
 const SignIn = () => {
-  const [form, setform] = useState({
+  const [form, setForm] = useState({
     email: "",
     password: "",
   });
-  const [isSubmiting, setisSubmiting] = useState(false);
-  const submit = () => {};
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const submit = () => {
+    setIsSubmitting(true);
+    // Handle form submission
+    setIsSubmitting(false);
+  };
+
   return (
-    <SafeAreaView className="bg-primary h-full">
-      <ScrollView>
-        <View className="w-full h-full justify-center min-h-[84vh] px-4 my-6">
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#161622" }}>
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          justifyContent: "center",
+          padding: 16,
+        }}
+      >
+        <View style={{ alignItems: "center" }}>
           <Image
             source={images.logo}
             resizeMode="contain"
-            className="w-[115px] h-[35px]"
+            style={{ width: 115, height: 35 }}
           />
-          <Text className=" text-2xl text-white text-semibold mt-10 font-psemibold">
+          <Text
+            style={{
+              fontSize: 24,
+              color: "white",
+              marginTop: 10,
+              fontWeight: "600",
+            }}
+          >
             Log in to Aora
           </Text>
           <FormField
             title="Email"
             value={form.email}
-            handleChangeText={(e: any) => setform({ ...form, email: e })}
+            handleChangeText={(e: any) => setForm({ ...form, email: e })}
             otherStyles="mt-7"
           />
           <FormField
             title="Password"
             value={form.password}
-            handleChangeText={(e: any) => setform({ ...form, password: e })}
+            handleChangeText={(e: any) => setForm({ ...form, password: e })}
             otherStyles="mt-7"
           />
           <CustomButton
             title="Sign In"
             handlePress={submit}
             containerStyles="mt-7"
-            isLoading={isSubmiting}
+            isLoading={isSubmitting}
           />
-          <View className=" justify-center pt-5 flex-row gap-2">
-            <Text className=" text-lg text-gray-100 font-pregular">
+          <View
+            style={{
+              flexDirection: "row",
+              alignItems: "center",
+              marginTop: 16,
+            }}
+          >
+            <Text style={{ fontSize: 16, color: "#7b7b8b" }}>
               Don't have an account?
             </Text>
-            <Link href="/sign-up" className=" text-lg font-psemibold text-secondary">
+            <Link
+              href="/sign-up"
+              style={{ fontSize: 16, color: "#FFA001", marginLeft: 4 }}
+            >
               Sign Up
             </Link>
           </View>
